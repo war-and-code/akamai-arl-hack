@@ -24,6 +24,8 @@ Where the latter is a text file of line-delimited targets.
 4. Prints 'true' or 'false' whether that payload seemed to work
 ```
 
-## More info on this attack
+## More info on ARL attacks
+
+https://warandcode.com/post/akamai-arl-hack/
 
 http://securityhorror.blogspot.com/2019/04/hacking-temporal-locality.html
