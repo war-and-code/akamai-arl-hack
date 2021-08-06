@@ -63,19 +63,14 @@ for target in target_list:
         # Request to http://subdomain.example.org/<PAYLOAD>
         if modified_target[-1] != '/':
             modified_target = modified_target + '/'
-        modified_target = modified_target + '7/100/33/1d/www.citysearch.com/search?what=reallylongstringtomakethepayloadforxssmoveoutofview&where=place%22%3E%3Csvg+onload=confirm(document.location)%3E'
+        # Payload from original Black Hat USA 2015 presentation
+        modified_target = modified_target + 'f/1/1/1/mediapm.edgesuite.net/flow/swf/flowplayer-v3.2.16.swf'
         res = requests.get(modified_target)
         # Response code 200
         if res.status_code != 200:
             looks_vulnerable = False
-        # Response protocol HTTP/1.0
-        elif res.raw.version != 10:
-            looks_vulnerable = False
-        # Response header "Server: Apache-Coyote/1.1"
-        elif 'Server' not in res.headers or 'Apache-Coyote' not in res.headers['Server']:
-            looks_vulnerable = False
-        # Response body includes "reallylongstringtomakethepayloadforxssmoveoutofview"
-        elif 'reallylongstringtomakethepayloadforxssmoveoutofview' not in res.text:
+        # Response header "Server: AkamaiNetStorage"
+        elif 'Server' not in res.headers or 'AkamaiNetStorage' not in res.headers['Server']:
             looks_vulnerable = False
     except:
         print('ERROR :', target)
